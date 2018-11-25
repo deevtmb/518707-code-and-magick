@@ -6,24 +6,20 @@ var WIZARD_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 1
 var WIZARD_EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var WIZARDS_AMOUNT = 4;
 
-var getRandomName = function (names) {
-  var i = Math.floor(Math.random() * names.length);
-  var name = names[i];
-  names.splice(i, 1);
+var similarListElement = document.querySelector('.setup-similar-list');
+var userDialogElement = document.querySelector('.setup');
+var fragment = document.createDocumentFragment();
 
-  return name;
-};
+var getRandomFromArray = function (array) {
+  var i = Math.floor(Math.random() * array.length);
+  var randomValue = array[i];
+  array.splice(i, 1);
 
-var getRandomColor = function (colors) {
-  var i = Math.floor(Math.random() * colors.length);
-  var randomColor = colors[i];
-  colors.splice(i, 1);
-
-  return randomColor;
+  return randomValue;
 };
 
 var getWizardName = function (firstNames, lastNames) {
-  return getRandomName(firstNames) + ' ' + getRandomName(lastNames);
+  return getRandomFromArray(firstNames) + ' ' + getRandomFromArray(lastNames);
 };
 
 var getRandomWizard = function (amount) {
@@ -31,11 +27,19 @@ var getRandomWizard = function (amount) {
   for (var i = 0; i < amount; i++) {
     wizardsList.push({
       name: getWizardName(WIZARD_FIRSTNAMES, WIZARD_LASTNAMES),
-      coatColor: getRandomColor(WIZARD_COAT_COLORS),
-      eyesColor: getRandomColor(WIZARD_EYES_COLORS)
+      coatColor: getRandomFromArray(WIZARD_COAT_COLORS),
+      eyesColor: getRandomFromArray(WIZARD_EYES_COLORS)
     });
   }
   return wizardsList;
+};
+
+var showUserDialog = function () {
+  userDialogElement.classList.remove('hidden');
+};
+
+var showSimilarSetup = function () {
+  userDialogElement.querySelector('.setup-similar').classList.remove('hidden');
 };
 
 var renderWizard = function (wizard) {
@@ -52,13 +56,10 @@ var renderWizard = function (wizard) {
 };
 
 var drawWizards = function () {
-  var similarListElement = document.querySelector('.setup-similar-list');
-  var fragment = document.createDocumentFragment();
-  var userDialogElement = document.querySelector('.setup');
   var wizards = getRandomWizard(WIZARDS_AMOUNT);
 
-  userDialogElement.classList.remove('hidden');
-  userDialogElement.querySelector('.setup-similar').classList.remove('hidden');
+  showSimilarSetup();
+  showUserDialog();
 
   for (var i = 0; i < wizards.length; i++) {
     fragment.appendChild(renderWizard(wizards[i]));
