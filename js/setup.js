@@ -10,6 +10,8 @@ var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 var WIZARDS_AMOUNT = 4;
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
+var POPUP_LEFT = '50%';
+var POPUP_TOP = '80px';
 
 var counter = 0;
 var similarListElement = document.querySelector('.setup-similar-list');
@@ -35,6 +37,8 @@ var openPopup = function () {
 
 var closePopup = function () {
   setupElement.classList.add('hidden');
+  setupElement.style.left = POPUP_LEFT;
+  setupElement.style.top = POPUP_TOP;
   document.removeEventListener('keydown', onPopupEscPress);
 };
 
