@@ -21,6 +21,8 @@ var nameFieldElement = setupElement.querySelector('.setup-user-name');
 var wizardCoatElement = setupElement.querySelector('.wizard-coat');
 var wizardEyesElement = setupElement.querySelector('.wizard-eyes');
 var fireballElement = setupElement.querySelector('.setup-fireball-wrap');
+var popupPositionLeft = setupElement.style.left;
+var popupPositionTop = setupElement.style.top;
 
 var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
@@ -35,6 +37,8 @@ var openPopup = function () {
 
 var closePopup = function () {
   setupElement.classList.add('hidden');
+  setupElement.style.left = popupPositionLeft;
+  setupElement.style.top = popupPositionTop;
   document.removeEventListener('keydown', onPopupEscPress);
 };
 
