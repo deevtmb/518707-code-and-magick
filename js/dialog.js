@@ -36,6 +36,7 @@
       };
       dialogHandlerElement.addEventListener('click', onClickPreventDefault);
     }
+    dragged = false;
   };
 
   dialogHandlerElement.addEventListener('mousedown', function (evt) {
