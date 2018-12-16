@@ -59,7 +59,7 @@
   });
 
   formElement.addEventListener('submit', function (evt) {
-    window.backend.save(new FormData(formElement), closePopup, window.backend.showErrorMessage);
+    window.backend.save(new FormData(formElement), closePopup, window.backend.onErrorMessage);
     evt.preventDefault();
   });
 })();

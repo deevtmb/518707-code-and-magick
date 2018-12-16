@@ -25,12 +25,12 @@
     return wizardElement;
   };
 
-  var successWizardsLoad = function (wizards) {
+  var onSuccessLoad = function (wizards) {
     var fragment = document.createDocumentFragment();
     var randomIndex;
 
     for (var i = 0; i < WIZARDS_AMOUNT; i++) {
-      randomIndex = getRandomNumber(0, wizards.length);
+      randomIndex = getRandomNumber(0, wizards.length - 1);
       fragment.appendChild(renderWizard(wizards[randomIndex]));
       wizards.splice(randomIndex, 1);
     }
@@ -39,5 +39,5 @@
     setupElement.querySelector('.setup-similar').classList.remove('hidden');
   };
 
-  window.backend.load(successWizardsLoad, window.backend.showErrorMessage);
+  window.backend.load(onSuccessLoad, window.backend.onErrorMessage);
 })();
