@@ -8,6 +8,7 @@
   var setupOpenElement = document.querySelector('.setup-open');
   var setupCloseElement = setupElement.querySelector('.setup-close');
   var nameFieldElement = setupElement.querySelector('.setup-user-name');
+  var formElement = setupElement.querySelector('.setup-wizard-form');
   var popupPositionLeft = setupElement.style.left;
   var popupPositionTop = setupElement.style.top;
 
@@ -55,5 +56,10 @@
 
   nameFieldElement.addEventListener('blur', function () {
     document.addEventListener('keydown', onPopupEscPress);
+  });
+
+  formElement.addEventListener('submit', function (evt) {
+    window.backend.save(new FormData(formElement), closePopup, window.backend.showErrorMessage);
+    evt.preventDefault();
   });
 })();
