@@ -48,6 +48,7 @@
 
   var onErrorMessage = function (errorMessage) {
     var errorMessageElement = document.createElement('div');
+    errorMessageElement.classList.add('error');
     errorMessageElement.style = 'position: absolute; z-index: 100; margin: 0 auto; width: 50%; height: 40px; left: 0; right: 0; top: 0; font-size: 24px; color: #fff; text-align: center; line-height: 40px; border-radius: 10px';
     errorMessageElement.style.background = 'linear-gradient(#ee4830 70%, #ffffff)';
 

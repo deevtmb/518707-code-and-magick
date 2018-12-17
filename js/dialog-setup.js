@@ -30,6 +30,17 @@
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
+  var removeError = function () {
+    if (document.querySelector('.error')) {
+      document.querySelector('.error').remove();
+    }
+  };
+
+  var onSuccessSubmit = function () {
+    closePopup();
+    removeError();
+  };
+
   setupOpenElement.addEventListener('click', function () {
     openPopup();
   });
@@ -59,7 +70,7 @@
   });
 
   formElement.addEventListener('submit', function (evt) {
-    window.backend.save(new FormData(formElement), closePopup, window.backend.onErrorMessage);
+    window.backend.save(new FormData(formElement), onSuccessSubmit, window.backend.onErrorMessage);
     evt.preventDefault();
   });
 })();
