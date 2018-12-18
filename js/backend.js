@@ -54,6 +54,10 @@
 
     errorMessageElement.textContent = errorMessage;
     document.body.appendChild(errorMessageElement);
+
+    setTimeout(function () {
+      errorMessageElement.remove();
+    }, 2000);
   };
 
 
