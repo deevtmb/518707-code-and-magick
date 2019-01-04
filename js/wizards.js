@@ -25,19 +25,18 @@
     return wizardElement;
   };
 
-  var onSuccessLoad = function (wizards) {
+  window.renderSimilarWizards = function (wizards) {
     var fragment = document.createDocumentFragment();
     var randomIndex;
+
+    similarListElement.innerHTML = '';
 
     for (var i = 0; i < WIZARDS_AMOUNT; i++) {
       randomIndex = getRandomNumber(0, wizards.length - 1);
       fragment.appendChild(renderWizard(wizards[randomIndex]));
-      wizards.splice(randomIndex, 1);
     }
     similarListElement.appendChild(fragment);
 
     setupElement.querySelector('.setup-similar').classList.remove('hidden');
   };
-
-  window.backend.load(onSuccessLoad, window.backend.onErrorMessage);
 })();
